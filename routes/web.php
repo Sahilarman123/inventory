@@ -20,3 +20,8 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/vendor/add', [App\Http\Controllers\VendorController::class, 'add_vendor'])->name('add_vendor');
+Route::get('/vendor', [App\Http\Controllers\VendorController::class, 'index'])->name('vendor');
+Route::post('/vendor/create', [App\Http\Controllers\VendorController::class, 'create_vendor'])->name('create_vendor');
+Route::post('/update-column-order', [App\Http\Controllers\VendorController::class, 'updateColumnOrder']);
+

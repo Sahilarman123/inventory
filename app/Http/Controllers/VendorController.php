@@ -9,13 +9,16 @@ use Hash;
 
 class VendorController extends Controller
 {
+    public function index(){
+        $vendors = User::where('user_type',1)->get();
+        return view('vendor.index',compact('vendors'));
+    }
+    public function add_vendor(){
+        return view('vendor.add');
+    }
      public function create_vendor(Request $request)
     {
-        Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
-        ]);
+       
 
         
         $vendor                 = new User;
@@ -34,5 +37,17 @@ class VendorController extends Controller
         $vendor->password       = Hash::make($request->password);
 
         $success                = $vendor->save();
+    }
+
+    public function updateColumnOrder(Request $request)
+    {
+    // Get the new column order from the request
+    $columnOrder = $request->input('columnOrder');
+
+    // Update the column order in your database or any other logic
+    // ...
+
+    // Return a response if needed
+    return response()->json(['message' => 'Column order updated successfully']);
     }
 }
