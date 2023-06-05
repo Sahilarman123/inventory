@@ -37,6 +37,12 @@ class VendorController extends Controller
         $vendor->password       = Hash::make($request->password);
 
         $success                = $vendor->save();
+
+        if($success){
+          return redirect()->route('vendor')->with('success','Vendor Create SucessFully');  
+        }else{
+            return redirect()->back()->with('alert','Something Went Wrong');  
+        }
     }
 
     public function updateColumnOrder(Request $request)
